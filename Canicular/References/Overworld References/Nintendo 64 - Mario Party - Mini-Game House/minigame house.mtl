@@ -1,0 +1,178 @@
+# Blender3D MTL File: minigame house.blend
+# Material Count: 16
+newmtl Material.209_minigame_house_grp.pn
+Ns 0.000000
+Ka 0.000000 0.000000 0.000000
+Kd 0.796875 0.796875 0.796875
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd minigame house_grp.png
+
+
+newmtl Material.205_minigame_house_grp.pn
+Ns 0.000000
+Ka 0.000000 0.000000 0.000000
+Kd 0.493750 0.493750 0.493750
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd minigame house_grp.png
+
+
+newmtl Material.170_minigame_house_grp.pn
+Ns 0.000000
+Ka 0.000000 0.000000 0.000000
+Kd 0.796875 0.796875 0.796875
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd minigame house_grp.png
+
+
+newmtl Material.207_minigame_house_grp.pn
+Ns 0.000000
+Ka 0.000000 0.000000 0.000000
+Kd 0.565625 0.371875 0.365625
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd minigame house_grp.png
+
+
+newmtl Material.208_minigame_house_grp.pn
+Ns 0.000000
+Ka 0.000000 0.000000 0.000000
+Kd 0.796875 0.796875 0.796875
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd minigame house_grp.png
+
+
+newmtl Material.201_minigame_house_grp.pn
+Ns 0.000000
+Ka 0.000000 0.000000 0.000000
+Kd 0.000000 0.000000 0.000000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd minigame house_grp.png
+
+
+newmtl Material.170
+Ns 0.000000
+Ka 0.000000 0.000000 0.000000
+Kd 0.796875 0.796875 0.796875
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd DB9177D_c.bmp
+
+
+newmtl Material.196_minigame_house_grp.pn
+Ns 0.000000
+Ka 0.000000 0.000000 0.000000
+Kd 0.784375 0.737500 0.731250
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd minigame house_grp.png
+
+
+newmtl Material.200_minigame_house_grp.pn
+Ns 0.000000
+Ka 0.000000 0.000000 0.000000
+Kd 0.665625 0.631250 0.625000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd minigame house_grp.png
+
+
+newmtl Material.199_minigame_house_grp.pn
+Ns 0.000000
+Ka 0.000000 0.000000 0.000000
+Kd 0.796875 0.796875 0.796875
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd minigame house_grp.png
+
+
+newmtl Material.202_minigame_house_grp.pn
+Ns 0.000000
+Ka 0.000000 0.000000 0.000000
+Kd 0.396875 0.396875 0.396875
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd minigame house_grp.png
+
+
+newmtl Material.197_minigame_house_grp.pn
+Ns 0.000000
+Ka 0.000000 0.000000 0.000000
+Kd 0.396875 0.396875 0.396875
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd minigame house_grp.png
+
+
+newmtl Material.198_minigame_house_grp.pn
+Ns 0.000000
+Ka 0.000000 0.000000 0.000000
+Kd 0.318750 0.318750 0.318750
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd minigame house_grp.png
+
+
+newmtl Material.203_minigame_house_grp.pn
+Ns 0.000000
+Ka 0.000000 0.000000 0.000000
+Kd 0.743750 0.743750 0.743750
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd minigame house_grp.png
+
+
+newmtl Material.204_minigame_house_grp.pn
+Ns 0.000000
+Ka 0.000000 0.000000 0.000000
+Kd 0.625000 0.625000 0.625000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd minigame house_grp.png
+
+
+newmtl Material.206_minigame_house_grp.pn
+Ns 0.000000
+Ka 0.000000 0.000000 0.000000
+Kd 0.318750 0.318750 0.318750
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd minigame house_grp.png
+
+

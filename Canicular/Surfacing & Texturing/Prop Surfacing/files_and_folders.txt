@@ -1,0 +1,86 @@
+ Volume in drive C has no label.
+ Volume Serial Number is 0E15-F78C
+
+ Directory of C:\Users\sam\Box\Canicular\Surfacing & Texturing\Prop Surfacing
+
+10/06/2021  02:06 PM    <DIR>          .
+10/06/2021  02:06 PM    <DIR>          ..
+10/06/2021  10:36 AM        16,649,567 apple.spp
+10/06/2021  10:37 AM        16,717,421 artShed.spp
+10/06/2021  10:37 AM        16,709,878 bakedGood1.spp
+10/06/2021  10:38 AM        16,655,664 bakedGood2.spp
+10/06/2021  10:40 AM        16,656,315 bandaid.spp
+10/06/2021  10:40 AM        16,654,474 barn.spp
+10/06/2021  10:41 AM        16,657,868 basket.spp
+10/06/2021  10:42 AM        16,650,698 beaker.spp
+10/06/2021  10:42 AM        16,709,829 blueprint.spp
+10/06/2021  10:43 AM        16,650,938 bolt.spp
+10/06/2021  10:43 AM        16,647,499 brick.spp
+10/06/2021  10:43 AM        16,775,363 brightHouse.spp
+10/06/2021  10:45 AM        16,647,064 canvas.spp
+10/06/2021  10:45 AM        16,664,647 cloud1.spp
+10/06/2021  10:46 AM        16,665,107 cog.spp
+10/06/2021  10:46 AM        16,666,705 compass.spp
+10/06/2021  10:46 AM        16,647,784 cottonBall.spp
+10/06/2021  10:47 AM        16,720,278 crane.spp
+10/06/2021  10:48 AM        16,655,687 crumpledPaper.spp
+10/06/2021  10:48 AM        16,649,772 cucumber.spp
+10/06/2021  10:50 AM        16,656,098 deciduousTree1.spp
+10/06/2021  10:50 AM        16,656,294 deciduousTree2.spp
+10/06/2021  10:50 AM        16,656,146 deciduousTree3.spp
+10/06/2021  10:51 AM        16,645,274 dirtPile.spp
+10/06/2021  10:52 AM        16,651,363 dirtPile2.spp
+10/06/2021  10:52 AM        16,775,339 easel.spp
+10/06/2021  10:53 AM        16,650,540 electric plug.spp
+10/06/2021  10:53 AM        16,650,829 evergreen.spp
+10/06/2021  10:54 AM        16,669,195 factory.spp
+10/06/2021  10:54 AM        16,658,293 fatPaintbrush.spp
+10/10/2021  06:28 PM               195 files_and_folders.txt
+10/06/2021  10:54 AM        16,654,899 flask.spp
+10/06/2021  10:55 AM        16,775,346 flowerBrush.spp
+10/06/2021  12:31 PM        16,840,892 giantCog.spp
+10/06/2021  12:32 PM        16,840,900 giantMachine.spp
+10/06/2021  10:58 AM        16,646,136 greenHouse.spp
+10/06/2021  10:59 AM        16,670,733 halfHouse.spp
+10/06/2021  10:59 AM        16,661,900 hammer.spp
+10/06/2021  10:59 AM        16,668,119 hoe.spp
+10/06/2021  11:00 AM        16,658,766 ladder.spp
+10/06/2021  11:05 AM        16,668,936 largeHouse.spp
+10/06/2021  11:08 AM        16,663,176 marigold.spp
+10/06/2021  11:08 AM        16,659,207 mediumHouse.spp
+10/06/2021  11:09 AM        16,709,762 microscope.spp
+10/06/2021  11:12 AM        16,659,659 mug.spp
+10/06/2021  11:12 AM        16,648,879 nut.spp
+10/06/2021  12:33 PM        16,656,582 nutsAndBolts.spp
+10/06/2021  11:13 AM        16,650,236 orange.spp
+10/06/2021  11:13 AM        16,661,287 paintingPalette.spp
+10/06/2021  11:13 AM        16,775,347 pallete.spp
+10/06/2021  11:14 AM        16,649,766 pill.spp
+10/06/2021  11:14 AM        16,648,946 pillow.spp
+10/06/2021  11:33 AM        16,654,098 pipe.spp
+10/06/2021  11:33 AM        16,645,291 projector.spp
+10/06/2021  11:34 AM        16,651,292 protractor.spp
+10/06/2021  12:13 PM        16,652,341 pumpkin.spp
+10/06/2021  12:13 PM        16,709,801 robot.spp
+10/06/2021  12:13 PM        16,645,257 ruler.spp
+10/06/2021  12:16 PM        16,652,008 sappling.spp
+10/06/2021  12:16 PM        16,667,406 scissors.spp
+10/06/2021  02:04 PM        19,062,184 scissors_autosave_0.spp
+10/06/2021  01:34 PM        19,062,184 scissors_autosave_1.spp
+10/06/2021  12:17 PM        16,657,035 screwdriver.spp
+10/06/2021  12:17 PM        16,653,596 seedling.spp
+10/06/2021  12:18 PM        16,775,327 semiTruck.spp
+10/06/2021  12:18 PM        16,665,510 shovel.spp
+10/06/2021  12:18 PM        16,657,862 skinnyPaintbrush.spp
+10/06/2021  12:18 PM        16,662,352 smallHouse.spp
+10/06/2021  12:18 PM        16,652,934 squash.spp
+10/06/2021  12:19 PM        16,715,943 sunflower.spp
+10/06/2021  12:19 PM        16,666,909 toolbox.spp
+10/06/2021  12:19 PM        16,709,759 trailer.spp
+10/06/2021  12:20 PM        16,709,756 tree.spp
+10/06/2021  12:20 PM        16,775,315 wagon.spp
+10/06/2021  12:20 PM        16,649,347 wheat.spp
+10/06/2021  12:20 PM        16,709,785 wheelbarrow.spp
+10/06/2021  12:21 PM        16,714,154 wiredLightbulb.spp
+              77 File(s)  1,272,369,044 bytes
+               2 Dir(s)  333,859,426,304 bytes free

@@ -1,0 +1,12 @@
+#
+# saria.mtl
+#
+
+newmtl Material.170_Saria_gr_Saria_grp
+illum 2
+Kd 0.637500 0.637500 0.637500
+Ka 0.000000 0.000000 0.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.501961 0.501961 0.501961
+Ns 1.000000
+map_Kd C:\Documents and Settings\Zerox\My Documents\Downloads\Saria/Saria_grp.png

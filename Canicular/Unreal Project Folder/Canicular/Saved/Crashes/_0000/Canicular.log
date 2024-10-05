@@ -1,0 +1,10 @@
+Not using cached read wrapper
+MemoryStats:
+	AvailablePhysical 51205697536
+	 AvailableVirtual 51891019776
+	     UsedPhysical 80916480
+	 PeakUsedPhysical 90632192
+	      UsedVirtual 36503552
+	  PeakUsedVirtual 2203369623552
+Allocator Stats for TBB: (not implemented)
+Windows GetLastError: The operation completed successfully. (0)
