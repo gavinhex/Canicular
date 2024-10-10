@@ -1,0 +1,22 @@
+﻿title: NPC1_0
+tags:
+---
+<<declare $NPC1Progress = 0>>
+NPC One: Hey! I'm the reasonable and cool headed NPC One!
+NPC One: What's goin' on?
+-> Not much!
+-> I'm testing your dialogue for a game jam!
+NPC One: Sounds good!
+<<set $NPC1Progress = 1>>
+===
+title: NPC1_1
+tags:
+---
+NPC One: I'm still here!
+<<set $NPC1Progress = 2>>
+===
+title: NPC1_2
+tags:
+---
+NPC One: My nose itches...
+===

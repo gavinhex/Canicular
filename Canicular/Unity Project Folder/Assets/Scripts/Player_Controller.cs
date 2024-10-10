@@ -55,6 +55,11 @@ public class Player_Controller : MonoBehaviour
     [SerializeField]
     private float mouseCameraSensitivity;
 
+    [Header("Interaction")]
+    private string targetedNPCName = "";
+    [SerializeField]
+    private float interactRayDistance;
+
     #endregion
 
     void Start()
@@ -130,6 +135,9 @@ public class Player_Controller : MonoBehaviour
         return Mathf.Clamp(lfAngle, lfMin, lfMax);
     }
 
+
+    #region --Input System Events--
+
     public void OnMove(InputValue moveValue)
     {
         Vector2 moveInputVec2 = moveValue.Get<Vector2>();
@@ -144,7 +152,7 @@ public class Player_Controller : MonoBehaviour
     {
         if (myCharacterController.isGrounded && !isJumping) 
         {
-            StartCoroutine(JumpStabilizer());
+            verticalVelocity = jumpSpeed;
             isJumping = true;
             //Jumping animation
         }
@@ -154,6 +162,23 @@ public class Player_Controller : MonoBehaviour
     {
         //Check interact collider
         //React based on Tag, or activate something somewhere else?
+
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, interactRayDistance))
+        {
+            if (hit.transform.gameObject.TryGetComponent(out NPC npc))
+            {
+                targetedNPCName = npc.npcName;
+                Debug.Log("Found NPC");
+                Dialogue_Handler.instance.StartDialogue(targetedNPCName);
+            }
+        }
+        /*if (targetedNPCName != "")
+        {
+            
+            Debug.Log("Talking to " + targetedNPCName);
+        }*/
+
     }
 
     public void OnLook(InputValue lookValue)
@@ -167,10 +192,23 @@ public class Player_Controller : MonoBehaviour
         //Initiate mode change to UI, timeScale = 0, etc
     }
 
-    IEnumerator JumpStabilizer()
+    #endregion
+
+    public void OnCollisionEnter(Collision collision)
     {
-        verticalVelocity = jumpSpeed * 0.6f;
-        yield return new WaitForFixedUpdate();
-        verticalVelocity += jumpSpeed * 0.4f;
+        if (collision.gameObject.TryGetComponent(out NPC npc))
+        {
+            targetedNPCName = npc.npcName;
+            Debug.Log("Hello " + targetedNPCName);
+        }
+    }
+
+    public void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.TryGetComponent(out NPC npc))
+        {
+            targetedNPCName = "";
+            Debug.Log("Goodbye " + targetedNPCName);
+        }
     }
 }
