@@ -19,6 +19,8 @@ public class Dialogue_Handler : MonoBehaviour
     private DialogueRunner dialogueRunner;
     public bool isDialogueRunning = false;
     private string currentlyTalking;
+    [SerializeField]
+    private Player_Controller playerController;
 
     #endregion
 
@@ -70,6 +72,7 @@ public class Dialogue_Handler : MonoBehaviour
             NPCDialogueProgress.Add(name, 0);
         }
         dialogueRunner.StartDialogue(name + "_" + NPCDialogueProgress[name]);
+        currentlyTalking = name;
         isDialogueRunning = true;
     }
 
@@ -79,5 +82,7 @@ public class Dialogue_Handler : MonoBehaviour
         yarnVariableStorage.TryGetValue("$" + currentlyTalking + "Progress", out progressNumber);
         NPCDialogueProgress[currentlyTalking] = (int)progressNumber;
         isDialogueRunning = false;
+
+        playerController.EnablePlayerActionMap();
     }
 }

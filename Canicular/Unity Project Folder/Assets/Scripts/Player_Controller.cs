@@ -11,6 +11,8 @@ public class Player_Controller : MonoBehaviour
 {
     #region --Variable Setup--
     private PlayerInput playerInput;
+    private InputActionMap playerActionMap;
+    private InputActionMap uiActionMap;
 
     [Header("Movement")]
     [SerializeField]
@@ -65,7 +67,10 @@ public class Player_Controller : MonoBehaviour
     void Start()
     {
         mainCamera = Camera.main;
+
         playerInput = GetComponent<PlayerInput>();
+        playerActionMap = playerInput.actions.FindActionMap("Player");
+        uiActionMap = playerInput.actions.FindActionMap("UI");
     }
 
     void Update()
@@ -169,8 +174,8 @@ public class Player_Controller : MonoBehaviour
             if (hit.transform.gameObject.TryGetComponent(out NPC npc))
             {
                 targetedNPCName = npc.npcName;
-                Debug.Log("Found NPC");
-                Dialogue_Handler.instance.StartDialogue(targetedNPCName);
+                Dialogue_Handler.instance.StartDialogue(targetedNPCName); //TO-DO: More elegant solution
+                EnableUIActionMap();
             }
         }
         /*if (targetedNPCName != "")
@@ -210,5 +215,18 @@ public class Player_Controller : MonoBehaviour
             targetedNPCName = "";
             Debug.Log("Goodbye " + targetedNPCName);
         }
+    }
+
+    public void EnablePlayerActionMap()
+    {
+        if (uiActionMap.enabled) uiActionMap.Disable();
+        playerActionMap.Enable();
+        Debug.Log("Turning on player action map");
+    }
+    public void EnableUIActionMap()
+    {
+        if (playerActionMap.enabled) playerActionMap.Disable();
+        uiActionMap.Enable();
+        Debug.Log("Turning on UI action map");
     }
 }
