@@ -71,6 +71,8 @@ public class Player_Controller : MonoBehaviour
         playerInput = GetComponent<PlayerInput>();
         playerActionMap = playerInput.actions.FindActionMap("Player");
         uiActionMap = playerInput.actions.FindActionMap("UI");
+
+        EnablePlayerControlMode(); //Just to be sure!
     }
 
     void Update()
@@ -112,7 +114,7 @@ public class Player_Controller : MonoBehaviour
         }*/
     }
 
-    //Stole this whole dang function from Unity's starter controller asset
+    //Stole this whole dang function from Unity's starter controller asset (With necessary changes)
     private void CameraRotation()
     {
         // if there is an input and camera position is not fixed
@@ -165,25 +167,15 @@ public class Player_Controller : MonoBehaviour
 
     public void OnInteract()
     {
-        //Check interact collider
-        //React based on Tag, or activate something somewhere else?
-
-        RaycastHit hit;
-        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, interactRayDistance))
+        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out RaycastHit npcCheckRayHit, interactRayDistance))
         {
-            if (hit.transform.gameObject.TryGetComponent(out NPC npc))
+            if (npcCheckRayHit.transform.gameObject.TryGetComponent(out NPC rayHitNPC)) //TO-DO: Switch to 'interactable' interface or something like that
             {
-                targetedNPCName = npc.npcName;
+                targetedNPCName = rayHitNPC.npcName;
                 Dialogue_Handler.instance.StartDialogue(targetedNPCName); //TO-DO: More elegant solution
-                EnableUIActionMap();
+                EnableUIControlMode();
             }
         }
-        /*if (targetedNPCName != "")
-        {
-            
-            Debug.Log("Talking to " + targetedNPCName);
-        }*/
-
     }
 
     public void OnLook(InputValue lookValue)
@@ -194,11 +186,19 @@ public class Player_Controller : MonoBehaviour
 
     public void OnPause()
     {
-        //Initiate mode change to UI, timeScale = 0, etc
+        UI_Controller.instance.TogglePauseMenu();
+        EnableUIControlMode();
+        Time.timeScale = 0f;
+    }
+
+    public void OnControlsChanged()
+    {
+        //Decide what to do with the mouse cursor based on mouse and keyboard vs gamepad control-scheme
     }
 
     #endregion
 
+/*
     public void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.TryGetComponent(out NPC npc))
@@ -215,18 +215,23 @@ public class Player_Controller : MonoBehaviour
             targetedNPCName = "";
             Debug.Log("Goodbye " + targetedNPCName);
         }
-    }
+    }*/
 
-    public void EnablePlayerActionMap()
+    public void EnablePlayerControlMode()
     {
         if (uiActionMap.enabled) uiActionMap.Disable();
         playerActionMap.Enable();
-        Debug.Log("Turning on player action map");
+
+        UnityEngine.Cursor.lockState = CursorLockMode.Locked;
+        Time.timeScale = 1f;
     }
-    public void EnableUIActionMap()
+
+    public void EnableUIControlMode()
     {
         if (playerActionMap.enabled) playerActionMap.Disable();
         uiActionMap.Enable();
-        Debug.Log("Turning on UI action map");
+
+        UnityEngine.Cursor.lockState = CursorLockMode.None;
+        //Time.timeScale = 0f;
     }
 }

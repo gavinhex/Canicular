@@ -26,6 +26,7 @@ public class Dialogue_Handler : MonoBehaviour
 
     private void Awake()
     {
+        #region Singleton Check
         if (instance != null && instance != this)
         {
             Destroy(this);
@@ -34,6 +35,7 @@ public class Dialogue_Handler : MonoBehaviour
         {
             instance = this;
         }
+        #endregion
 
         dialogueRunner = FindObjectOfType<Yarn.Unity.DialogueRunner>();
         yarnVariableStorage = FindObjectOfType<InMemoryVariableStorage>();
@@ -83,6 +85,6 @@ public class Dialogue_Handler : MonoBehaviour
         NPCDialogueProgress[currentlyTalking] = (int)progressNumber;
         isDialogueRunning = false;
 
-        playerController.EnablePlayerActionMap();
+        playerController.EnablePlayerControlMode();
     }
 }
