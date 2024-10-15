@@ -78,6 +78,12 @@ public class Dialogue_Handler : MonoBehaviour
         isDialogueRunning = true;
     }
 
+    //YarnCommand for playing an animation here
+
+    //YarnCommand for giving the player an item here
+
+    //YarnCommand for camera controls here?
+
     public void DialogueDone()
     {
         float progressNumber;

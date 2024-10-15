@@ -9,6 +9,8 @@ using UnityEngine.Windows;
 /// </summary>
 public class Player_Controller : MonoBehaviour
 {
+    //TO DO: Game State Manager that can interpose between player and objects that need player info (for switching between active player characters easily)
+
     #region --Variable Setup--
     private PlayerInput playerInput;
     private InputActionMap playerActionMap;
@@ -32,9 +34,9 @@ public class Player_Controller : MonoBehaviour
     private float moveForce;
 
     [Header("Jump")]
-    private bool isJumping = false;
     [SerializeField]
     private float jumpSpeed;
+    private bool isJumping = false;
     [SerializeField]
     private float gravityStrength;
     private float verticalVelocity;
@@ -42,9 +44,9 @@ public class Player_Controller : MonoBehaviour
     private float maxFallSpeed;
 
     [Header("Camera")]
-    private Camera mainCamera;
     [SerializeField]
     private GameObject cameraFollowTarget;
+    private Camera mainCamera;
     private float cameraTargetYaw;
     private float cameraTargetPitch;
     [SerializeField]
@@ -56,11 +58,17 @@ public class Player_Controller : MonoBehaviour
     private Vector2 lookInputValue;
     [SerializeField]
     private float mouseCameraSensitivity;
+    [SerializeField]
+    private float gamepadCameraSensitivity;
 
     [Header("Interaction")]
-    private string targetedNPCName = "";
     [SerializeField]
     private float interactRayDistance;
+    private string targetedNPCName = "";
+
+    [Header("Animation")]
+    [SerializeField]
+    private Animator myAnimator;
 
     #endregion
 
@@ -86,6 +94,37 @@ public class Player_Controller : MonoBehaviour
             moveForce = Mathf.Clamp(moveForce - (decelerationRate * Time.deltaTime), moveInputMagnitude, moveSpeed);
         }
 
+        //Temp animation stuff
+        if (myCharacterController.isGrounded)
+        {
+            if (!myAnimator.GetBool("Grounded") && !isJumping)
+            {
+                myAnimator.SetTrigger("Landing");
+            }
+            myAnimator.SetBool("Grounded", true);
+        }
+        else
+        {
+            myAnimator.SetBool("Grounded", false);
+        }
+
+        if (moveInputMagnitude == 0f)
+        {
+            myAnimator.SetBool("Walking", false);
+            myAnimator.SetBool("Running", false);
+        }
+        else if (moveInputMagnitude > 0f && moveInputMagnitude < 0.7f)
+        {
+            myAnimator.SetBool("Walking", true);
+            myAnimator.SetBool("Running", false);
+        }
+        else if (moveInputMagnitude >= 0.7f)
+        {
+            myAnimator.SetBool("Running", true);
+            myAnimator.SetBool("Walking", false);
+        }
+        //End temp anim
+
         Gravity();
 
         if (moveForce > 0f)
@@ -107,6 +146,7 @@ public class Player_Controller : MonoBehaviour
         {
             verticalVelocity = Mathf.Clamp(verticalVelocity - gravityStrength, -maxFallSpeed, 100f);
             if (verticalVelocity < 0f) isJumping = false;
+            myAnimator.SetBool("Grounded", false);
         }
         /*else
         {
@@ -121,7 +161,7 @@ public class Player_Controller : MonoBehaviour
         if (lookInputValue.sqrMagnitude >= cameraMoveThreshold/* && !LockCameraPosition*/)
         {
             //Don't multiply mouse input by Time.deltaTime;
-            float deltaTimeMultiplier = (playerInput.currentControlScheme == "KeyboardMouse") ? mouseCameraSensitivity : 1.0f; //Time.deltaTime;
+            float deltaTimeMultiplier = (playerInput.currentControlScheme == "KeyboardMouse") ? mouseCameraSensitivity : gamepadCameraSensitivity; //Time.deltaTime;
 
             cameraTargetYaw += lookInputValue.x * deltaTimeMultiplier;
             cameraTargetPitch -= lookInputValue.y * deltaTimeMultiplier;
@@ -162,6 +202,8 @@ public class Player_Controller : MonoBehaviour
             verticalVelocity = jumpSpeed;
             isJumping = true;
             //Jumping animation
+            myAnimator.SetBool("Grounded", false);
+            myAnimator.SetTrigger("Jump");
         }
     }
 
@@ -169,7 +211,7 @@ public class Player_Controller : MonoBehaviour
     {
         if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out RaycastHit npcCheckRayHit, interactRayDistance))
         {
-            if (npcCheckRayHit.transform.gameObject.TryGetComponent(out NPC rayHitNPC)) //TO-DO: Switch to 'interactable' interface or something like that
+            if (npcCheckRayHit.transform.gameObject.TryGetComponent(out NPC_Behavior rayHitNPC)) //TO-DO: Switch to 'interactable' interface or something like that
             {
                 targetedNPCName = rayHitNPC.npcName;
                 Dialogue_Handler.instance.StartDialogue(targetedNPCName); //TO-DO: More elegant solution
@@ -197,25 +239,6 @@ public class Player_Controller : MonoBehaviour
     }
 
     #endregion
-
-/*
-    public void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.TryGetComponent(out NPC npc))
-        {
-            targetedNPCName = npc.npcName;
-            Debug.Log("Hello " + targetedNPCName);
-        }
-    }
-
-    public void OnCollisionExit(Collision collision)
-    {
-        if (collision.gameObject.TryGetComponent(out NPC npc))
-        {
-            targetedNPCName = "";
-            Debug.Log("Goodbye " + targetedNPCName);
-        }
-    }*/
 
     public void EnablePlayerControlMode()
     {

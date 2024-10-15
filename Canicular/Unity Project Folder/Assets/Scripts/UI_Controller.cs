@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 /// <summary>
 /// Handles control of UI elements!
@@ -12,6 +13,8 @@ public class UI_Controller : MonoBehaviour
 
     [SerializeField]
     private GameObject pauseMenu;
+    [SerializeField] 
+    private Button pauseResumeButton;
 
     [SerializeField]
     private Player_Controller playerController;
@@ -35,7 +38,11 @@ public class UI_Controller : MonoBehaviour
 
     public void TogglePauseMenu()
     {
-        if (pauseMenu.activeSelf == false) pauseMenu.SetActive(true);
+        if (pauseMenu.activeSelf == false)
+        {
+            pauseMenu.SetActive(true);
+            pauseResumeButton.Select();
+        }
         else
         {
             pauseMenu.SetActive(false);
