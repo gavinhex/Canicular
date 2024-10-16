@@ -213,8 +213,7 @@ public class Player_Controller : MonoBehaviour
         {
             if (npcCheckRayHit.transform.gameObject.TryGetComponent(out NPC_Behavior rayHitNPC)) //TO-DO: Switch to 'interactable' interface or something like that
             {
-                targetedNPCName = rayHitNPC.npcName;
-                Dialogue_Handler.instance.StartDialogue(targetedNPCName); //TO-DO: More elegant solution
+                rayHitNPC.CallDialogue();
                 EnableUIControlMode();
             }
         }

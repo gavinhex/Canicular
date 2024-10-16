@@ -1,0 +1,52 @@
+title: Rose_0
+tags:
+---
+<<declare $RoseProgress = "0">>
+Rose: Hi! I'm Rose. Or a coder's tutorialized version of Rose, anyway. Check out my Yarn script for more info on, uh, Yarn scripts!
+Rose: We're using the "NameProgress" variable to keep track of where the player is in an NPC's dialogue line/tree. 
+Rose: Make sure to set it, and to update it at the end of an individual dialogue if you want the next dialogue to be different!
+Rose: The progress variable is a string, but right now the default starting point is '0', because reasons.
+<<set $RoseProgress = "1">>
+===
+title: Rose_1
+tags:
+---
+Rose: Also, here's an example of a dialogue choice!
+-> Wait I'm not ready for choices!
+    Rose: Oh, my bad!
+-> Right here?
+    Rose: Yeah!
+<<set $RoseProgress = "CussCheck">>
+===
+title: Rose_CussCheck
+tags:
+---
+Rose: We also have a simple system for 'flags', so you can set checks and stuff for progress! I'll make one now for...'has said a cuss'.
+<<flag_make "yarnTutorialCussFlag">>
+Rose: I'll test you here, and then next dialogue we'll check the flag, yeah?
+Rose: Okay, now's your chance. Say a cuss! Or don't.
+-> Dang!
+    <<flag_set "yarnTutorialCussFlag" true>>
+-> Not gonna do it.
+<<set $RoseProgress = "3">>
+===
+title: Rose_3
+tags:
+---
+Rose: Okay I'm checking the flag, hold up.
+<<if flag_check("yarnTutorialCussFlag") == true>>
+    Rose: Alright! It's not much of a cuss, but hey it's the best we can do here with pre-defined dialogue choices.
+    <<set $RoseProgress = "4">>
+<<else>>
+    Rose: The record says...you did not say a cuss. Okay, let's try that one again!
+    <<set $RoseProgress = "CussCheck">>
+<<endif>>
+===
+title: Rose_4
+tags:
+---
+Rose: Thanks for playing along with all of that!
+Rose: Honestly I can't think of anything else to demonstrate right now. You'll be best off reading the actual Yarn tutorial, linked in the script, for built-in Yarn functionality.
+//https://docs.yarnspinner.dev/getting-started/writing-in-yarn
+Rose: Thanks for reading all of this!
+===

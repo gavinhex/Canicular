@@ -9,6 +9,7 @@ using UnityEngine.UI;
 public class UI_Controller : MonoBehaviour
 {
     #region --Variable Setup--
+    [HideInInspector]
     public static UI_Controller instance;
 
     [SerializeField]
