@@ -22,7 +22,7 @@ public class Dialogue_Handler : MonoBehaviour
 
     private DialogueRunner dialogueRunner;
     public bool isDialogueRunning = false;
-    private string currentlyTalking;
+    private string currentTalkerLabel;
     private int currentTalkerID = 0;
     [SerializeField]
     private Player_Controller playerController;
@@ -72,44 +72,44 @@ public class Dialogue_Handler : MonoBehaviour
     }
 
     //[YarnCommand("start_dialogue")] //The Jump command in Yarn handles jumping to other nodes for now, and I think this option may open up issues (with DialogueDone not being called properly) at this point
-    public void StartDialogue(string name)
+    public void StartDialogue(string label)
     {
-        if (dialogueRunner.NodeExists(name + "_0"))
+        if (dialogueRunner.NodeExists(label + "_0"))
         {
-            if (!NPCDialogueProgress.ContainsKey(name))
+            if (!NPCDialogueProgress.ContainsKey(label))
             {
-                NPCDialogueProgress.Add(name, "0");
+                NPCDialogueProgress.Add(label, "0");
             }
 
-            dialogueRunner.StartDialogue(name + "_" + NPCDialogueProgress[name]);
-            currentlyTalking = name;
+            dialogueRunner.StartDialogue(label + "_" + NPCDialogueProgress[label]);
+            currentTalkerLabel = label;
             isDialogueRunning = true;
         }
     }
 
-    public void StartDialogue(string name, string startingNodeID)
+    public void StartDialogue(string label, string startingNodeID)
     {
-        if (!NPCDialogueProgress.ContainsKey(name) && dialogueRunner.NodeExists(name + "_" + startingNodeID))
+        if (!NPCDialogueProgress.ContainsKey(label) && dialogueRunner.NodeExists(label + "_" + startingNodeID))
         {
-            NPCDialogueProgress.Add(name, startingNodeID);
+            NPCDialogueProgress.Add(label, startingNodeID);
         }
-        NPCDialogueProgress[name] = startingNodeID;
-        dialogueRunner.StartDialogue(name + "_" + startingNodeID);
-        currentlyTalking = name;
+        NPCDialogueProgress[label] = startingNodeID;
+        dialogueRunner.StartDialogue(label + "_" + startingNodeID);
+        currentTalkerLabel = label;
         isDialogueRunning = true;
     }
 
-    public void StartDialogue(string name, string startingNodeID, int callerID)
+    public void StartDialogue(string label, string startingNodeID, int callerID)
     {
         currentTalkerID = callerID;
 
-        if (!NPCDialogueProgress.ContainsKey(name) && dialogueRunner.NodeExists(name + "_" + startingNodeID))
+        if (!NPCDialogueProgress.ContainsKey(label) && dialogueRunner.NodeExists(label + "_" + startingNodeID))
         {
-            NPCDialogueProgress.Add(name, startingNodeID);
+            NPCDialogueProgress.Add(label, startingNodeID);
         }
-        NPCDialogueProgress[name] = startingNodeID;
-        dialogueRunner.StartDialogue(name + "_" + startingNodeID);
-        currentlyTalking = name;
+        NPCDialogueProgress[label] = startingNodeID;
+        dialogueRunner.StartDialogue(label + "_" + startingNodeID);
+        currentTalkerLabel = label;
         isDialogueRunning = true;
     }
 
@@ -122,8 +122,8 @@ public class Dialogue_Handler : MonoBehaviour
     public void DialogueDone()
     {
         string nextNodeID;
-        yarnVariableStorage.TryGetValue("$" + currentlyTalking + "Progress", out nextNodeID);
-        NPCDialogueProgress[currentlyTalking] = nextNodeID;
+        yarnVariableStorage.TryGetValue("$" + currentTalkerLabel + "Progress", out nextNodeID);
+        NPCDialogueProgress[currentTalkerLabel] = nextNodeID;
         //TO DO: Return nodeID to talker, if relevant.
         isDialogueRunning = false;
 

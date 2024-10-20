@@ -64,7 +64,6 @@ public class Player_Controller : MonoBehaviour
     [Header("Interaction")]
     [SerializeField]
     private float interactRayDistance;
-    private string targetedNPCName = "";
 
     [Header("Animation")]
     [SerializeField]
@@ -80,73 +79,71 @@ public class Player_Controller : MonoBehaviour
         playerActionMap = playerInput.actions.FindActionMap("Player");
         uiActionMap = playerInput.actions.FindActionMap("UI");
 
-        EnablePlayerControlMode(); //Just to be sure!
+        EnablePlayerControlMode(); 
     }
 
     void Update()
+    {
+        Inertia();
+        AlignMovementToCamera();
+        Gravity();
+
+        myCharacterController.Move(myCharacterController.transform.forward * ((moveSpeed * moveForce) * Time.deltaTime) + new Vector3(0f, verticalVelocity, 0f) * Time.deltaTime);
+
+        CameraRotation();
+    }
+
+    private void LateUpdate()
+    {
+        //Temp animation stuff
+        if (Time.timeScale > 0f)
+        {
+            myAnimator.SetFloat("MoveInputMagnitude", moveInputMagnitude);
+
+            if (myCharacterController.isGrounded)
+            {
+                if (!myAnimator.GetBool("Grounded") && !isJumping)
+                {
+                    myAnimator.SetTrigger("Landing");
+                }
+                myAnimator.SetBool("Grounded", true);
+            }
+            else
+            {
+                myAnimator.SetBool("Grounded", false);
+            }
+        }
+        //End temp anim
+    }
+
+    private void Inertia()
     {
         if (moveInputMagnitude > moveForce)
         {
             moveForce = Mathf.Clamp(moveForce + (accelerationRate * Time.deltaTime), 0f, moveInputMagnitude);
         }
-        else if (moveInputMagnitude < moveForce) 
+        else if (moveInputMagnitude < moveForce)
         {
             moveForce = Mathf.Clamp(moveForce - (decelerationRate * Time.deltaTime), moveInputMagnitude, moveSpeed);
         }
+    }
 
-        //Temp animation stuff
-        if (myCharacterController.isGrounded)
-        {
-            if (!myAnimator.GetBool("Grounded") && !isJumping)
-            {
-                myAnimator.SetTrigger("Landing");
-            }
-            myAnimator.SetBool("Grounded", true);
-        }
-        else
-        {
-            myAnimator.SetBool("Grounded", false);
-        }
-
-        if (moveInputMagnitude == 0f)
-        {
-            myAnimator.SetBool("Walking", false);
-            myAnimator.SetBool("Running", false);
-        }
-        else if (moveInputMagnitude > 0f && moveInputMagnitude < 0.7f)
-        {
-            myAnimator.SetBool("Walking", true);
-            myAnimator.SetBool("Running", false);
-        }
-        else if (moveInputMagnitude >= 0.7f)
-        {
-            myAnimator.SetBool("Running", true);
-            myAnimator.SetBool("Walking", false);
-        }
-        //End temp anim
-
-        Gravity();
-
+    private void AlignMovementToCamera()
+    {
         if (moveForce > 0f)
         {
             viewAdjustedMoveDirection = cameraRotation * new Vector3(moveInputDirection.x, 0f, moveInputDirection.y);
             myCharacterController.transform.forward = viewAdjustedMoveDirection;
             myCharacterController.transform.eulerAngles = new Vector3(0f, myCharacterController.transform.eulerAngles.y, myCharacterController.transform.eulerAngles.z);
         }
-
-        myCharacterController.Move(myCharacterController.transform.forward * ((moveSpeed * moveForce) * Time.deltaTime) + new Vector3(0f, verticalVelocity, 0f) * Time.deltaTime);
-        //Move animation: If not jumping, then play move animation if, uh, moving. Faster or different animation for walking/running?
-
-        CameraRotation();
     }
 
     private void Gravity()
     {
-        if (!myCharacterController.isGrounded)
+        if (!myCharacterController.isGrounded && Time.timeScale > 0f)
         {
             verticalVelocity = Mathf.Clamp(verticalVelocity - gravityStrength, -maxFallSpeed, 100f);
             if (verticalVelocity < 0f) isJumping = false;
-            myAnimator.SetBool("Grounded", false);
         }
         /*else
         {
@@ -201,7 +198,6 @@ public class Player_Controller : MonoBehaviour
         {
             verticalVelocity = jumpSpeed;
             isJumping = true;
-            //Jumping animation
             myAnimator.SetBool("Grounded", false);
             myAnimator.SetTrigger("Jump");
         }
@@ -211,9 +207,9 @@ public class Player_Controller : MonoBehaviour
     {
         if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out RaycastHit npcCheckRayHit, interactRayDistance))
         {
-            if (npcCheckRayHit.transform.gameObject.TryGetComponent(out NPC_Behavior rayHitNPC)) //TO-DO: Switch to 'interactable' interface or something like that
+            if (npcCheckRayHit.transform.gameObject.TryGetComponent(out IInteractable interactableThing)) 
             {
-                rayHitNPC.CallDialogue();
+                interactableThing.Interact();
                 EnableUIControlMode();
             }
         }
@@ -254,6 +250,5 @@ public class Player_Controller : MonoBehaviour
         uiActionMap.Enable();
 
         UnityEngine.Cursor.lockState = CursorLockMode.None;
-        //Time.timeScale = 0f;
     }
 }

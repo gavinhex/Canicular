@@ -50,4 +50,9 @@ public class UI_Controller : MonoBehaviour
             playerController.EnablePlayerControlMode();
         }
     }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
 }

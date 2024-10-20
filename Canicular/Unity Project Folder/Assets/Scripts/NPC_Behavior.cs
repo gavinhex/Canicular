@@ -5,7 +5,7 @@ using UnityEngine;
 /// <summary>
 /// NPC information and behavior!
 /// </summary>
-public class NPC_Behavior : MonoBehaviour
+public class NPC_Behavior : MonoBehaviour, IInteractable
 {
     [Tooltip("The label the dialogue system will use to find this entity's dialogue. The 'Rose' in 'Rose_0'. Make sure this matches a dialogue in the yarn scripts!")]
     public string myDialogueLabel;
@@ -20,7 +20,7 @@ public class NPC_Behavior : MonoBehaviour
         }
     }
 
-    public void CallDialogue()
+    public void Interact()
     {
         Dialogue_Handler.instance.StartDialogue(myDialogueLabel);
     }
