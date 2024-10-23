@@ -1,52 +1,52 @@
-title: Rose_0
+﻿title: Rose_0
 tags:
 ---
 <<declare $RoseProgress = "0">>
-Rose: Hi! I'm Rose. Or a coder's tutorialized version of Rose, anyway. Check out my Yarn script for more info on, uh, Yarn scripts!
-Rose: We're using the "NameProgress" variable to keep track of where the player is in an NPC's dialogue line/tree. 
-Rose: Make sure to set it, and to update it at the end of an individual dialogue if you want the next dialogue to be different!
-Rose: The progress variable is a string, but right now the default starting point is '0', because reasons.
+Rose: Hi! I'm Rose. Or a coder's tutorialized version of Rose, anyway. Check out my Yarn script for more info on, uh, Yarn scripts! #line:0157187 
+Rose: We're using the "NameProgress" variable to keep track of where the player is in an NPC's dialogue line/tree.  #line:0e0b928 
+Rose: Make sure to set it, and to update it at the end of an individual dialogue if you want the next dialogue to be different! #line:0778369 
+Rose: The progress variable is a string, but right now the default starting point is '0', because reasons. #line:099beeb 
 <<set $RoseProgress = "1">>
 ===
 title: Rose_1
 tags:
 ---
-Rose: Also, here's an example of a dialogue choice!
--> Wait I'm not ready for choices!
-    Rose: Oh, my bad!
--> Right here?
-    Rose: Yeah!
+Rose: Also, here's an example of a dialogue choice! #line:0ad993f 
+-> Wait I'm not ready for choices! #line:01fbe46 
+    Rose: Oh, my bad! #line:0359eb7 
+-> Right here? #line:0917421 
+    Rose: Yeah! #line:0aefedb 
 <<set $RoseProgress = "CussCheck">>
 ===
 title: Rose_CussCheck
 tags:
 ---
-Rose: We also have a simple system for 'flags', so you can set checks and stuff for progress! I'll make one now for...'has said a cuss'.
+Rose: We also have a simple system for 'flags', so you can set checks and stuff for progress! I'll make one now for...'has said a cuss'. #line:0486a32 
 <<flag_make "yarnTutorialCussFlag">>
-Rose: I'll test you here, and then next dialogue we'll check the flag, yeah?
-Rose: Okay, now's your chance. Say a cuss! Or don't.
--> Dang!
+Rose: I'll test you here, and then next dialogue we'll check the flag, yeah? #line:05cadf9 
+Rose: Okay, now's your chance. Say a cuss! Or don't. #line:0d76c05 
+-> Dang! #line:03f0450 
     <<flag_set "yarnTutorialCussFlag" true>>
--> Not gonna do it.
+-> Not gonna do it. #line:0ea0320 
 <<set $RoseProgress = "3">>
 ===
 title: Rose_3
 tags:
 ---
-Rose: Okay I'm checking the flag, hold up.
+Rose: Okay I'm checking the flag, hold up. #line:0508968 
 <<if flag_check("yarnTutorialCussFlag") == true>>
-    Rose: Alright! It's not much of a cuss, but hey it's the best we can do here with pre-defined dialogue choices.
+    Rose: Alright! It's not much of a cuss, but hey it's the best we can do here with pre-defined dialogue choices. #line:0062d20 
     <<set $RoseProgress = "4">>
 <<else>>
-    Rose: The record says...you did not say a cuss. Okay, let's try that one again!
+    Rose: The record says...you did not say a cuss. Okay, let's try that one again! #line:0d9bc73 
     <<set $RoseProgress = "CussCheck">>
 <<endif>>
 ===
 title: Rose_4
 tags:
 ---
-Rose: Thanks for playing along with all of that!
-Rose: Honestly I can't think of anything else to demonstrate right now. You'll be best off reading the actual Yarn tutorial, linked in the script, for built-in Yarn functionality.
+Rose: Thanks for playing along with all of that! #line:0c9ce67 
+Rose: Honestly I can't think of anything else to demonstrate right now. You'll be best off reading the actual Yarn tutorial, linked in the script, for built-in Yarn functionality. #line:0245ed5 
 //https://docs.yarnspinner.dev/getting-started/writing-in-yarn
-Rose: Thanks for reading all of this!
+Rose: Thanks for reading all of this! #line:09313f1 
 ===

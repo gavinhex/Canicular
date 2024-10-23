@@ -59,7 +59,12 @@ public class Dialogue_Handler : MonoBehaviour
     [YarnFunction("flag_check")]
     public static bool FlagCheck(string flagToCheck)
     {
-        return DialogueFlags[flagToCheck];
+        if (DialogueFlags.ContainsKey(flagToCheck)) return DialogueFlags[flagToCheck];
+        else
+        {
+            Debug.Log($"Flag {flagToCheck} not found!");
+            return false;
+        }
     }
 
     [YarnCommand("flag_set")]
@@ -69,6 +74,7 @@ public class Dialogue_Handler : MonoBehaviour
         {
             DialogueFlags[flagToSet] = flagValue;
         }
+        else Debug.LogError($"Flag {flagToSet} not found!");
     }
 
     //[YarnCommand("start_dialogue")] //The Jump command in Yarn handles jumping to other nodes for now, and I think this option may open up issues (with DialogueDone not being called properly) at this point
@@ -84,6 +90,12 @@ public class Dialogue_Handler : MonoBehaviour
             dialogueRunner.StartDialogue(label + "_" + NPCDialogueProgress[label]);
             currentTalkerLabel = label;
             isDialogueRunning = true;
+
+            playerController.EnableUIControlMode();
+        }
+        else
+        {
+            Debug.LogError($"No node found with label {label}!");
         }
     }
 

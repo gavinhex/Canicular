@@ -2,21 +2,21 @@
 tags:
 ---
 <<declare $NPC1Progress = 0>>
-NPC One: Hey! I'm the reasonable and cool headed NPC One!
-NPC One: What's goin' on?
--> Not much!
--> I'm testing your dialogue for a game jam!
-NPC One: Sounds good!
+NPC One: Hey! I'm the reasonable and cool headed NPC One! #line:0d90cb2 
+NPC One: What's goin' on? #line:024cedf 
+-> Not much! #line:041beaf 
+-> I'm testing your dialogue for a game jam! #line:0803d47 
+NPC One: Sounds good! #line:00ee25f 
 <<set $NPC1Progress = 1>>
 ===
 title: NPC1_1
 tags:
 ---
-NPC One: I'm still here!
+NPC One: I'm still here! #line:09c1ff0 
 <<set $NPC1Progress = 2>>
 ===
 title: NPC1_2
 tags:
 ---
-NPC One: My nose itches...
+NPC One: My nose itches... #line:0d70f74 
 ===

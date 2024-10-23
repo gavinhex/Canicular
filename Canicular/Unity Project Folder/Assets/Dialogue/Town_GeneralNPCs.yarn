@@ -1,0 +1,28 @@
+﻿title: Town_GeneralNPCs_0
+tags:
+---
+<<declare $Town_GeneralNPCsProgress = "0">>
+Guy on the Street: Seems like this is a space for generic NPCs to talk?
+===
+title: Town_Robot_0
+tags:
+---
+<<declare $Town_RobotProgress = "0">>
+Robot: Greetings human. I require a flower. For regular human reasons. Do you possess a flower I could have?
+-> Sure!
+    <<if flag_check("robotsFlowerFlag") == true>>
+        Robot: Thank you. This will greatly assist my mood regulation efforts. Your efforts are valued.
+        <<set $Town_RobotProgress = "1">>
+    <<else>>
+        Robot: Your enthusiasm is valued, but I do not believe you possess the requested flower.
+    <<endif>>
+-> Nope, sorry.
+    Robot: Understood.
+===
+title: Town_Robot_1
+tags:
+---
+Robot: Thank you human. I am now unbothered. Gears lubricated. Happy. In my lane. Focused. Flourishing. 
+Robot: Et cetera.
+===
+

@@ -197,6 +197,7 @@ public class Player_Controller : MonoBehaviour
         if (myCharacterController.isGrounded && !isJumping) 
         {
             verticalVelocity = jumpSpeed;
+            Debug.Log("JUMPIN!");
             isJumping = true;
             myAnimator.SetBool("Grounded", false);
             myAnimator.SetTrigger("Jump");
@@ -210,7 +211,6 @@ public class Player_Controller : MonoBehaviour
             if (npcCheckRayHit.transform.gameObject.TryGetComponent(out IInteractable interactableThing)) 
             {
                 interactableThing.Interact();
-                EnableUIControlMode();
             }
         }
     }

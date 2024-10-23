@@ -1,0 +1,30 @@
+﻿title: Town_GeneralItems_0
+tags:
+---
+<<declare $Town_GeneralItemsProgress = "0">>
+Whoever takes care of these flowers just left their wheelbarrow laying around. Seems kinda careless. #line:0950092 
+===
+title: Town_Wheelbarrow_0
+tags:
+---
+<<declare $Town_WheelbarrowProgress = "0">>
+Whoever takes care of these flowers just left their wheelbarrow laying around. Seems kinda careless? #line:0dad7c5 
+===
+title: Town_FlowerBush_0
+tags:
+---
+<<declare $Town_FlowerBushProgress = "0">>
+<<flag_make "robotsFlowerFlag">>
+What a well-kept flower bush! You're tempted to take one of them for yourself.
+-> Take one!
+    <<set $Town_FlowerBushProgress = "1">>
+    <<flag_set "robotsFlowerFlag" true>>
+    You snap a lovely flower off of the bush. It smells really flowery.
+-> That'd be kinda rude.
+    You leave the bush be -- somebody probably put a lot of work into these flowers!
+===
+title: Town_FlowerBush_1
+tag:
+---
+What a well-kept flower bush! Minus one flower now, of course.
+===
