@@ -100,11 +100,11 @@ public class Player_Controller : MonoBehaviour
         {
             myAnimator.SetFloat("MoveInputMagnitude", moveInputMagnitude);
 
-            if (myCharacterController.isGrounded)
+            if (AnimationGroundedCheck())
             {
                 if (!myAnimator.GetBool("Grounded") && !isJumping)
                 {
-                    myAnimator.SetTrigger("Landing");
+                    myAnimator.SetTrigger("Landing"); 
                 }
                 myAnimator.SetBool("Grounded", true);
             }
@@ -114,6 +114,15 @@ public class Player_Controller : MonoBehaviour
             }
         }
         //End temp anim
+    }
+
+    private bool AnimationGroundedCheck() //TO DO: This is a temp solution, will cause silly animation behaviors at the edge of platforms. Find a better one. (Using CharacterController's isGrounded produces another visual bug, too)
+    {
+        return (Physics.Raycast(transform.position + new Vector3(0.5f, 0f ,0.5f), Vector3.down, 0.1f) ||
+            Physics.Raycast(transform.position + new Vector3(-0.5f, 0f, 0.5f), Vector3.down, 0.1f) ||
+            Physics.Raycast(transform.position + new Vector3(0.5f, 0f, -0.5f), Vector3.down, 0.1f) ||
+            Physics.Raycast(transform.position + new Vector3(-0.5f, 0f, -0.5f), Vector3.down, 0.1f)
+            );
     }
 
     private void Inertia()
@@ -197,7 +206,6 @@ public class Player_Controller : MonoBehaviour
         if (myCharacterController.isGrounded && !isJumping) 
         {
             verticalVelocity = jumpSpeed;
-            Debug.Log("JUMPIN!");
             isJumping = true;
             myAnimator.SetBool("Grounded", false);
             myAnimator.SetTrigger("Jump");
