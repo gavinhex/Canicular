@@ -20,6 +20,9 @@ public class UI_Controller : MonoBehaviour
     [SerializeField]
     private Player_Controller playerController;
 
+    [SerializeField]
+    private PlayerMovement PlayermovementScript;
+
     #endregion
 
 
@@ -47,7 +50,10 @@ public class UI_Controller : MonoBehaviour
         else
         {
             pauseMenu.SetActive(false);
-            playerController.EnablePlayerControlMode();
+            if (playerController != null)
+                playerController.EnablePlayerControlMode();
+            else
+                PlayermovementScript.EnablePlayerControlMode();
         }
     }
 

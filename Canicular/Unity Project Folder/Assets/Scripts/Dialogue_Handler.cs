@@ -26,6 +26,8 @@ public class Dialogue_Handler : MonoBehaviour
     private int currentTalkerID = 0;
     [SerializeField]
     private Player_Controller playerController;
+    [SerializeField]
+    private PlayerMovement playerMovementScript;
 
     #endregion
 
@@ -91,7 +93,10 @@ public class Dialogue_Handler : MonoBehaviour
             currentTalkerLabel = label;
             isDialogueRunning = true;
 
-            playerController.EnableUIControlMode();
+            if(playerController != null)
+                playerController.EnableUIControlMode();
+            else
+                playerMovementScript.EnableUIControlMode();
         }
         else
         {
@@ -139,6 +144,9 @@ public class Dialogue_Handler : MonoBehaviour
         //TO DO: Return nodeID to talker, if relevant.
         isDialogueRunning = false;
 
-        playerController.EnablePlayerControlMode();
+        if (playerController != null)
+            playerController.EnablePlayerControlMode();
+        else
+            playerMovementScript.EnablePlayerControlMode();
     }
 }

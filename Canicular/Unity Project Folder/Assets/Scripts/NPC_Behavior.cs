@@ -12,6 +12,9 @@ public class NPC_Behavior : MonoBehaviour, IInteractable
     //public string StartingDialogueNodeID { get; set; } //TO DO: Option to set a different starting dialogue node than the one listed in our progress dictionary, for this NPC/iteration.
     private Animator myAnimator;
 
+    [Header("Visual Cue")]
+    [SerializeField] private GameObject VisualCue;
+
     void Awake()
     {
         if (GetComponentInChildren<Animator>() != null)
@@ -24,4 +27,23 @@ public class NPC_Behavior : MonoBehaviour, IInteractable
     {
         Dialogue_Handler.instance.StartDialogue(myDialogueLabel);
     }
+    //added trigger sphere to enable yarn spinner dialogue instead of using a raycast
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.GetComponent<PlayerMovement>()) 
+        {
+            other.GetComponent<PlayerMovement>().NPCcheckGameobject = gameObject;
+            VisualCue.SetActive(true);
+        }
+    }
+    //remove npc reference frome player
+    public void OnTriggerExit(Collider other)
+    {
+        if (other.GetComponent<PlayerMovement>())
+        {
+            other.GetComponent<PlayerMovement>().NPCcheckGameobject = null;
+            VisualCue.SetActive(false);
+        }
+    }
+
 }

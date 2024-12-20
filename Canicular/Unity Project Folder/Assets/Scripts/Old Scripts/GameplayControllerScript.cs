@@ -1,11 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class GameplayControllerScript : MonoBehaviour
 {
 
+    //public PlayerInputs Controls;
+    //public PlayerInput InputHolder;
     public PlayerInputs Controls;
+    public string currentControlScheme = "";
     //public bool CanMovePlayer = true;
 
     public GameObject PauseMenu;
@@ -21,7 +25,7 @@ public class GameplayControllerScript : MonoBehaviour
         }else{
             instance = this;
         }
-
+        //InputHolder = GetComponent<PlayerInput>();
         Controls = new PlayerInputs();
         Controls.Player.Enable();
 
