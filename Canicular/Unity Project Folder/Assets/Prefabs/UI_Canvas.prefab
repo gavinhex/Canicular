@@ -553,6 +553,7 @@ MonoBehaviour:
   pauseMenu: {fileID: 4738186089143589173}
   pauseResumeButton: {fileID: 8355720835126887203}
   playerController: {fileID: 0}
+  PlayermovementScript: {fileID: 0}
 --- !u!1 &6688594766722906216
 GameObject:
   m_ObjectHideFlags: 0

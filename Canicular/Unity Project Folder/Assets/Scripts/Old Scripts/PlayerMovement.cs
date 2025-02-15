@@ -189,8 +189,20 @@ public class PlayerMovement : MonoBehaviour
             //cameraTargetYaw += lookInputValue.x * deltaTimeMultiplier;
             //cameraTargetPitch -= lookInputValue.y * deltaTimeMultiplier;
 
-            cameraTargetYaw += lookInputValue.x;
-            cameraTargetPitch -= lookInputValue.y;
+            if (controls.Player.Look.activeControl.shortDisplayName != "RS")//check control scheme by checking active control display name
+            {
+                cameraTargetYaw += lookInputValue.x;
+                cameraTargetPitch -= lookInputValue.y;
+                //print("Mouse mode");
+            }
+            else 
+            {
+                cameraTargetYaw += lookInputValue.x * 100 * Time.deltaTime;
+                cameraTargetPitch -= lookInputValue.y * 100 * Time.deltaTime;
+                //print("gamepad mode");
+            }
+
+            //print(controls.GamepadScheme.name);
         }
 
         // clamp our rotations so our values are limited 360 degrees

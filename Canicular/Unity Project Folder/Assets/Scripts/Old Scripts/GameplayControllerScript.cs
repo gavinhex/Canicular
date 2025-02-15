@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.EventSystems;
 
 public class GameplayControllerScript : MonoBehaviour
 {
@@ -12,7 +13,7 @@ public class GameplayControllerScript : MonoBehaviour
     public string currentControlScheme = "";
     //public bool CanMovePlayer = true;
 
-    public GameObject PauseMenu;
+    public GameObject PauseMenu, BattleMenu, firstBattleButn;
 
     private InventoryScript inventory;
 
@@ -61,6 +62,7 @@ public class GameplayControllerScript : MonoBehaviour
         Time.timeScale = 0;
         inventory.VariableCheck();
         PauseMenu.SetActive(true);
+        UnityEngine.Cursor.lockState = CursorLockMode.None;
     }
 
     public void UnPauseGame()
@@ -70,6 +72,7 @@ public class GameplayControllerScript : MonoBehaviour
         Time.timeScale = 1;
         inventory.ResetMenus();
         PauseMenu.SetActive(false);
+        UnityEngine.Cursor.lockState = CursorLockMode.Locked;
     }
 
     public void FreezePlayer()
@@ -80,5 +83,28 @@ public class GameplayControllerScript : MonoBehaviour
     public void UnFreezePlayer()
     {
         Controls.Player.Enable();
+    }
+
+    public void EnterBattleMode() 
+    {
+        Controls.Player.Disable();
+        BattleMenu.SetActive(true);
+
+        SelectFightButton();
+
+        //Controls.Player.Pause.Enable();//do this so player can un pause using the pause button.
+        Controls.UI.Enable();
+    }
+    public void SelectFightButton()
+    {
+        StartCoroutine(SelectFirstButton(firstBattleButn));
+    }
+
+
+    private IEnumerator SelectFirstButton(GameObject FirstButn)//not sure if doing this in a coroutine is needed anymore.
+    {
+        EventSystem.current.SetSelectedGameObject(null);
+        yield return null;
+        EventSystem.current.SetSelectedGameObject(FirstButn);
     }
 }
